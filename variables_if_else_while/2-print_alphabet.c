@@ -9,14 +9,14 @@
 int main(void)
 {
 	int i;
-	char ch;
+	//char ch;
 
 	for (i = 97; i < 123; i++)
 	{
-		ch = i;
-		putchar(ch);
+		//ch = i;
+		putchar(i);
 	}
-	ch = 10;
-	putchar(ch);
+	i = 10;
+	putchar(i);
 	return (0);
 }
