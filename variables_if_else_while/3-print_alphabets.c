@@ -17,10 +17,10 @@ int main(void)
 		putchar(ch);
 	}
 	for (i = 65; i < 91; i++)
-        {
-                ch = i;
-                putchar(ch);
-        }
+	{
+		ch = i;
+		putchar(ch);
+	}
 	ch = 10;
 	putchar(ch);
 	return (0);
