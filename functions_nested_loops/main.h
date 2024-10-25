@@ -14,5 +14,6 @@ void times_table(void);
 int add(int, int);
 void print_to_98(int n);
 void print_times_table(int n);
+void print_sum_mult_3_5_below_1024(void);
 
 #endif
