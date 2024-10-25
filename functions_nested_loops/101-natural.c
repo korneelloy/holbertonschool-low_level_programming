@@ -1,4 +1,18 @@
 #include <stdio.h>
+void print_sum_mult_3_5_below_1024(void);
+
+/**
+ * main - entry point
+ *
+ * Return: 0 if no errors
+ */
+
+int main(void)
+{
+	print_sum_mult_3_5_below_1024();
+	return (0);
+}
+
 
 /**
  * print_sum_mult_3_5_below_1024 - prints sum of the mult. of 3 & 5 below 1024
