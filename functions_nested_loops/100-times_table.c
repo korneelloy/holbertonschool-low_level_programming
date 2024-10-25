@@ -1,5 +1,4 @@
-#include <stdio.h>
-
+#include "main.h"
 /**
  * print_times_table - prints n times the muliplication table
  * @n: n times table, should be between 0 and 15
@@ -18,28 +17,34 @@ void print_times_table(int n)
 
 			for (j = 0; j <= n; j++)
 			{
-				int x;
+				int units = ((i * j) % 10) + 48;
+				int decim = ((i * j) / 10 % 10) + 48;
+				int cent = ((i * j) / 100 % 10) + 48;
 
-				x = i * j;
-				if (j < n)
+				if (j != 0)
 				{
-					printf("%d, ", x);
-					if (x < 10)
+					_putchar(44);
+					_putchar(32);
+					if ((i * j) < 10)
 					{
-						printf("  ");
+						_putchar(32);
+						_putchar(32);
 					}
-					else if (x >= 10 && x < 100)
+					else if ((i * j) >= 10 && (i * j) < 100)
 					{
-						printf(" ");
+						_putchar(32);
+						_putchar(decim);
+					}
+					else
+					{
+						_putchar(cent);
+						_putchar(decim);
 					}
 				}
-				else
-				{
-					printf("%d", x);
-				}
+				_putchar(units);
 			}
-			printf("\n");
+			_putchar(10);
 		}
-		printf("\n");
+		_putchar(10);
 	}
 }
