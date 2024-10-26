@@ -22,20 +22,20 @@ int main(void)
 void print_50_fibonacci(void)
 {
 	int i;
-	long long int a = 0;
-	long long int b = 1;
-	long long int c;
+	double a = 0;
+	double b = 1;
+	double c;
 
 	for (i = 0; i < 50; i++)
 	{
 		c = a + b;
 		if (i == 49)
 		{
-			printf("%lld", c);
+			printf("%.0f", c);
 		}
 		else
 		{
-			printf("%lld, ", c);
+			printf("%.0f, ", c);
 		}
 		a = b;
 		b = c;
