@@ -25,7 +25,7 @@ void sum_even_fibonacci(void)
 	int a = 0;
 	int b = 1;
 	int c = 0;
-	int total;
+	double total;
 
 	for (i = 0; c < 4000000; i++)
 	{
@@ -37,5 +37,5 @@ void sum_even_fibonacci(void)
 		a = b;
 		b = c;
 	}
-	printf("%d\n", total);
+	printf("%.0f\n", total);
 }
