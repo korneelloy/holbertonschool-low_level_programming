@@ -4,7 +4,7 @@ void print_50_fibonacci(void);
 /**
  * main - entry point
  *
- * Return: no return
+ * Return: 0 if no mistake
  */
 
 int main(void)
@@ -22,25 +22,23 @@ int main(void)
 void print_50_fibonacci(void)
 {
 	int i;
-	int a = 1;
-	int b = 2;
-	int c = 3;
-
-	printf("%d, ", a);
-	printf("%d, ", b);
+	long long int a = 0;
+	long long int b = 1;
+	long long int c;
 
 	for (i = 0; i < 50; i++)
 	{
+		c = a + b;
 		if (i == 49)
 		{
-			printf("%d", c);
+			printf("%lld", c);
 		}
 		else
-		{	
-			printf("%d, ", c);
+		{
+			printf("%lld, ", c);
 		}
 		a = b;
-		c += b;
+		b = c;
 	}
 	printf("\n");
 }
