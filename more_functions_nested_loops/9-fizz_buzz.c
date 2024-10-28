@@ -1,4 +1,19 @@
 #include <stdio.h>
+
+void fizz_buzz(void);
+
+/**
+ * main - entry point
+ *
+ * Return: 0 is no errors
+ */
+
+int main(void)
+{
+	fizz_buzz();
+	return (0);
+}
+
 /**
  * fizz_buzz - prints numberts 1 to 100, mult of 3>Fizz + mult of 5>Buzz
  *
