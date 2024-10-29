@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * void _puts - print string + newline to stdout
- * @str pointer to a character / first character of a string
+ * _puts - print string + newline to stdout
+ * @str: pointer to a character / first character of a string
  *
  * Return: no return
  */
