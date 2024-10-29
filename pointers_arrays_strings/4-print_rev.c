@@ -11,7 +11,7 @@ void print_rev(char *s)
 {
 	int i, j;
 
-	if (s[0] != "")
+	if (s != "")
 	{
 		for (i = 0; s[i] != '\0'; i++)
 			j = i;
