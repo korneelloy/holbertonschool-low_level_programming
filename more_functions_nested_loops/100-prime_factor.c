@@ -6,40 +6,28 @@
  * Return: no return
  */
 
-int prime(int x)
+int largest_prime(int x)
 {
 	int y;
 
-	for (y = x - 1; y > 1; y--)
+	for (y = x - 1; y > 0; y--)
 	{
-		if (x % y == 0)
+		if (y == 1)
 		{
-			prime(y);
-			break;
+			printf("%d\n", x);
+			return (0);
 		}
-		else
-			printf("%d\n", y);
-	}
-}
-
-void largest_prime(void)
-{
-	int x = 1231952;
-	prime(x);
-/**
-	for (i = 1231951; i > 1; i--)
-	{
-		if(1231952 % i == 0)
+		else if (x % y == 0)
 		{
-			printf("%d\n", i);
+			printf("boucle %d\n", y);
+			largest_prime(y);
 		}
 	}
-*/
 }
-
 
 int main(void)
 {
-        largest_prime();
-        return (0);
+        int x = 1231952;
+	largest_prime(x);
+	return (0);
 }
