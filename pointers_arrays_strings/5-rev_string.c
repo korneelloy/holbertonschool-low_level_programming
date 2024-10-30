@@ -34,8 +34,6 @@ int compter_nombre_char(char *s)
 	for (i = 0; s[i] != '\0'; i++)
 		j = i;
 
-	if (j == 0)
-		j = 1;
 	return (j);
 }
 
