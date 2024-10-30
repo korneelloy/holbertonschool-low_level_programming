@@ -15,6 +15,9 @@ char *_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		str_len++;
 	}
-	dest[str_len + 1] = '\0';
+	if (str_len != 0)
+		dest[str_len + 1] = '\0';
+	else
+		dest[0] = '\0';
 	return (dest);
 }
