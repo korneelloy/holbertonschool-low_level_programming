@@ -46,18 +46,15 @@ int pos_or_neg(char *s)
 {
 	int i = 0;
 	int compteur_neg = 0;
-	int compteur_pos = 0;
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] == '-')
 			compteur_neg++;
-		else if (s[i] == '+')
-			compteur_pos++;
 		else if (s[i] > 47 && s[i] < 58)
 			break;
 	}
-	if (compteur_neg > compteur_pos)
+	if (compteur_neg % 2 == 1)
 		return (-1);
 	else
 		return (1);
