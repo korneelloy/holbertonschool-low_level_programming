@@ -14,7 +14,10 @@ void rev_string(char *s)
 	int nombre_char = compter_nombre_char(s);
 	int i;
 
-	for (i = 0; i < (nombre_char / 2) ; i++)
+	if (nombre_char == 0)
+		return;
+
+	for (i = 0; i <= (nombre_char / 2) ; i++)
 	{
 		switching(&s[i], &s[nombre_char - i]);
 	}
@@ -32,7 +35,7 @@ int compter_nombre_char(char *s)
 	int i, j;
 
 	for (i = 0; s[i] != '\0'; i++)
-	j = i;
+		j = i;
 	return (j);
 }
 
