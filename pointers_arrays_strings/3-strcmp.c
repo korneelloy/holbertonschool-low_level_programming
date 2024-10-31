@@ -17,10 +17,13 @@ int _strcmp(char *s1, char *s2)
 			break;
 	}
 
-	for (j = 0; s2[j] != '\0'; j++)
+	if (diff == 0)
 	{
-		if (j > i)
-			diff = s2[j];
+		for (j = 0; s2[j] != '\0'; j++)
+		{
+			if (j > i)
+				diff = s2[j];
+		}
 	}
 	return (diff);
 }
