@@ -11,7 +11,11 @@ char *cap_string(char *string)
 
 	for (i = 0; string[i] != '\0'; i++)
 	{
-		if (string[i] == 32 ||
+		if (string[0] > 96 && string[0] < 123)
+		{
+			string[0] = string[0] - 32;
+		}
+		else if (string[i] == 32 ||
 			string[i] == 9 ||
 			string[i] == 10 ||
 			string[i] == 44 ||
