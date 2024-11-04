@@ -8,25 +8,14 @@
  */
 int main(void)
 {
-    char s1[98];
-    int i;
+    char *s = "hello";
+    char *f;
 
-    for (i = 0; i < 98 - 1; i++)
+    f = _strchr(s, 'l');
+
+    if (f != NULL)
     {
-        s1[i] = '*';
+        printf("%s\n", f);
     }
-    s1[i] = '\0';
-    /** 
-    printf("%s\n", s1);
-    _strncpy(s1, "First, solve the problem. Then, write the code\n", 5);
-    printf("%s\n", s1);
-    _strncpy(s1, "First, solve the problem. Then, write the code\n", 90);
-    printf("%s\n", s1);
-    _strncpy(s1, "", 4);
-    printf("%s\n", s1);
-    */
-
-    _strncpy(s1, "Talk is cheap. Show me the code.\n", 64);
-    printf("%s\n", s1);
     return (0);
 }
