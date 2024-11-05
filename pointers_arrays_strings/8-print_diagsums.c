@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
- * print_diagsums
- * @a: pointer to an array of int 
+ * print_diagsums - prints sum diagonals square matrix
+ * @a: pointer to an array of int
  * @size: size of 2 dimensional array (both sides)
  *
  * Return: no return
@@ -9,7 +9,7 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i;
+	int i, j;
 	int *ptr = 0;
 	int result = 0;
 
@@ -18,7 +18,15 @@ void print_diagsums(int *a, int size)
 		ptr = a + (i * (size + 1));
 		result = result + *ptr;
 	}
-	printf("%d\n, ", result);
+	printf("%d, ", result);
 
-	for (j = 
+	result = 0;
+	*ptr = 0;
+
+	for (j = 1; j <= size; j++)
+	{
+		ptr = a + ((size - 1) * j);
+		result = result + *ptr;
+	}
+	printf("%d\n", result);
 }
