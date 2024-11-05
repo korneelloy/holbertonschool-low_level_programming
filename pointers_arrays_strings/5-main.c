@@ -10,10 +10,10 @@
 int main(void)
 {
     char *s = "hello, world";
-    char *f = "llo";
+    char *f = "";
     char *t;
 
     t = _strstr(s, f);
-    printf("%s\n", t);
+    printf("%p\n", t);
     return (0);
 }
