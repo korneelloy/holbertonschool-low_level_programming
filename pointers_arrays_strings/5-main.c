@@ -9,11 +9,11 @@
  */
 int main(void)
 {
-    char *s = "hello, world";
-    char *f = "";
+    char *s = "";
+    char *f = "rl";
     char *t;
 
     t = _strstr(s, f);
-    printf("%p\n", t);
+    printf("%s\n", t);
     return (0);
 }
