@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
  * main - check the code
@@ -9,7 +10,7 @@
 int main(void)
 {
     char *s = "hello, world";
-    char *f = "hello";
+    char *f = "llo";
     char *t;
 
     t = _strstr(s, f);
