@@ -1,4 +1,3 @@
-#include <stdio.h>
 /**
  * _strstr - returns first occurence of a substring another string
  * @haystack: pointer to a string to be checked
@@ -9,27 +8,30 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j;
-	char **ptr = &haystack;
+	int i = 0, j = 0, index = 0;
 
-	for (i = 0; haystack[i] != '\0'; i++)
+	while (haystack[i] != '\0')
 	{
-		if (needle[0] == '\0')
-		{
+		if (needle[j] == '\0')
 			return (0);
-		}
 		else
 		{
+			index = i;
 			for (j = 0; needle[j] != '\0'; j++)
 			{
-				if (haystack[i] == needle[j])
+				if (haystack[i] != needle[j])
 				{
-					*ptr = *ptr + i;
-					for (k = 0; needle[j + k] != '\0'; k++)
-
+					i++;
+					break;
+				}
+				else
+				{
+					i++;
+					continue;
 				}
 			}
+			return (haystack + index);
 		}
 	}
-	return (0);
+	return (haystack + index);
 }
