@@ -12,10 +12,8 @@ int main(void)
 
     r = is_prime_number(1);
     printf("%d\n", r);
-   
     r = is_prime_number(1024);
     printf("%d\n", r);
-    
     r = is_prime_number(16);
     printf("%d\n", r);
     r = is_prime_number(17);
@@ -24,12 +22,9 @@ int main(void)
     printf("%d\n", r);
     r = is_prime_number(-1);
     printf("%d\n", r);
-   
-    
     r = is_prime_number(113);
     printf("%d\n", r);
     r = is_prime_number(7919);
     printf("%d\n", r);
-
     return (0);
 }
