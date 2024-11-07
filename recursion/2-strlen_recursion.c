@@ -8,14 +8,9 @@
 
 int _strlen_recursion(char *s)
 {
-	char *ptr = 0;
 	if (*s == '\0')
 	{
-		ptr = s;
-		printf("a la fin de la boucle: %p\n", s);
+		return (0);
 	}
-
-	_strlen_recursion(s + 1);
-        printf("ici: %p\n", ptr);
-	return (0);
+	return (1 + _strlen_recursion(s + 1));
 }
