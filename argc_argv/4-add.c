@@ -11,14 +11,21 @@
 
 int main(int argc, char *argv[])
 {
-	int i, result = 0, iteration = 0;
+	int i, j, result = 0, iteration = 0;
 
 	for (i = 1; i < argc; i++)
 	{
 		iteration = strtol(argv[i], '\0', 10);
-		printf("iteration %d\n", iteration);
+		if (iteration == 0)
+		{
+			for (j = 0; argv[i][j] != '\0'; j++)
+				if (argv[i][j] != '0')
+				{
+					printf("Error\n");
+					return (1);
+				}
+		}
 		result += iteration;
-		iteration = 0;
 	}
 	printf("%d\n", result);
 	return (0);
