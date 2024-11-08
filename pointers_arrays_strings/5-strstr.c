@@ -17,7 +17,7 @@ char *_strstr(char *haystack, char *needle)
 			j++;
 			compteur++;
 			if (needle[j] == '\0')
-				return (&haystack[i] - compteur + 1);
+				return (&haystack[i] - compteur);
 		}
 		else
 		{
