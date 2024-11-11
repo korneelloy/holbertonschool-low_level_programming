@@ -1,27 +1,34 @@
 #include <stdlib.h>
 
 /**
- * alloc_grid - memeory allocation for grid
+ * alloc_grid - memory allocation for grid
  * @width: width of the grid
  * @height: height of the grid
  *
  * Return: pointer to 2 dimensional array of ints
  */
+
 int **alloc_grid(int width, int height)
 {
-	int **pointer = NULL;
+	/** liste de pointeurs sur les lignes*/
+	int **liste_pointeurs = NULL;
+	/**alloc toute la mémoire néc (comme si array uni dimensionel)*/
+	int *alloc_complete = NULL;
 	int i;
 
-	if (width <= 0 || height <= 0)
+	alloc_complete = calloc(width * height, sizeof(int));
+	if (alloc_complete == NULL)
 		return (NULL);
-	pointer = calloc(height * width, sizeof(int));
-	if (pointer == NULL)
-		return (NULL);
-	for (i = 0; i < height; i++)
+
+	liste_pointeurs = calloc(height, sizeof(int *));
+	if (liste_pointeurs == NULL)
 	{
-		pointer[i] = calloc(height, sizeof(int));
-		if (pointer[i] == NULL)
-			return (NULL);
+		free(alloc_complete);
+		return (NULL);
 	}
-	return (pointer);
+
+	/** faire pointer les height x pointeurs sur les premières cases des lignes*/
+	for (i = 0; i < height; i++)
+		liste_pointeurs[i] = &alloc_complete[0] + (i * width);
+	return (liste_pointeurs);
 }
