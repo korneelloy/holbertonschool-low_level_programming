@@ -1,4 +1,5 @@
 #include <stdlib.h>
+
 /**
  * array_range - create array of numbers
  * @min: futs number
@@ -9,7 +10,7 @@
 
 int *array_range(int min, int max)
 {
-	int i;
+	int i, j = 0;
 	int compteur = 0;
 	int *pointeur = NULL;
 
@@ -21,6 +22,9 @@ int *array_range(int min, int max)
 	if (pointeur == NULL)
 		return (NULL);
 	for (i = min; i <= max; i++)
-		pointeur[i] = i;
+	{
+		pointeur[j] = i;
+		j++;
+	}
 	return (pointeur);
 }
