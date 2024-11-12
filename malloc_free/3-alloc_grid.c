@@ -18,11 +18,11 @@ int **alloc_grid(int width, int height)
 
 	if (width <= 0 || height <= 0)
 		return (NULL);
-	alloc_complete = calloc(width * height, sizeof(int));
+	alloc_complete = malloc(width * height * sizeof(int));
 	if (alloc_complete == NULL)
 		return (NULL);
 
-	liste_pointeurs = calloc(height, sizeof(int *));
+	liste_pointeurs = malloc(height * sizeof(int *));
 	if (liste_pointeurs == NULL)
 	{
 		free(alloc_complete);
@@ -32,5 +32,7 @@ int **alloc_grid(int width, int height)
 	/** faire pointer les height x pointeurs sur les premières cases des lignes*/
 	for (i = 0; i < height; i++)
 		liste_pointeurs[i] = &alloc_complete[0] + (i * width);
+	for (i = 0; i < height * width; i++)
+		alloc_complete[i] = 0;
 	return (liste_pointeurs);
 }
