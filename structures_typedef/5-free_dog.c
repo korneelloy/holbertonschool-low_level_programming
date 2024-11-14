@@ -6,10 +6,12 @@
  * free_dog - frees the allocated space
  * @d: pointer towards a dog
  *
- * RFeturn: no return
+ * Return: no return
  */
 
 void free_dog(dog_t *d)
 {
-	(void)d;
+	free(d->name);
+	free(d->owner);
+	free(d);
 }
