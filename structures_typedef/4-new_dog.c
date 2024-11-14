@@ -20,18 +20,19 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	ptr = &my_dog;
 
+	ptr = malloc(sizeof(dog_t *) * 2 + sizeof(float));
+	if (ptr == NULL)
+		return (NULL);
 	ptr->name = malloc(sizeof(nom));
 	if (ptr->name == NULL)
 		return (NULL);
 	ptr->owner = malloc(sizeof(prop));
-	if (ptr == NULL)
+	if (ptr->owner == NULL)
 		return (NULL);
 
 	ptr->name = nom;
 	ptr->age = age;
 	ptr->owner = prop;
 
-	if (ptr == NULL || ptr->name == NULL || ptr->owner == NULL)
-		return (NULL);
 	return (ptr);
 }
