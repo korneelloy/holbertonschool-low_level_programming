@@ -25,6 +25,7 @@ int **alloc_grid(int width, int height)
 	liste_pointeurs = malloc(height * sizeof(int *));
 	if (liste_pointeurs == NULL)
 	{
+		free(liste_pointeurs);
 		free(alloc_complete);
 		return (NULL);
 	}
