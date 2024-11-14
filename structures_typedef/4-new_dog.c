@@ -19,7 +19,11 @@ dog_t *new_dog(char *name, float age, char *owner)
 	char *prop = owner;
 
 	ptr = &my_dog;
-	ptr = malloc(sizeof(nom) + sizeof(float) + sizeof(prop));
+
+	ptr->name = malloc(sizeof(nom));
+	if (ptr->name == NULL)
+		return (NULL);
+	ptr->owner = malloc(sizeof(prop));
 	if (ptr == NULL)
 		return (NULL);
 
