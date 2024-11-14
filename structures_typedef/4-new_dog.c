@@ -14,11 +14,13 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t my_dog;
 	dog_t *ptr = NULL;
+	char *nom = name;
+	char *prop = owner;
 
 	ptr = &my_dog;
-	ptr->name = name;
+	ptr->name = nom;
 	ptr->age = age;
-	ptr->owner = owner;
+	ptr->owner = prop;
 	if (ptr == NULL || ptr->name == NULL || ptr->owner == NULL)
 		return (NULL);
 	return (ptr);
