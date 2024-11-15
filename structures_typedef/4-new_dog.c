@@ -14,7 +14,7 @@ int size_of_string(char *s)
 
 	while (s[i] != '\0')
 		i++;
-	return (i++);
+	return (i);
 }
 
 /**
