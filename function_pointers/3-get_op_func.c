@@ -1,7 +1,7 @@
 #include "3-calc.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 /**
  * get_op_func - get corresponding function
  * @s: operator
@@ -23,7 +23,7 @@ int (*get_op_func(char *s))(int, int)
 
 	while (ops[i].f != NULL)
 	{
-		if (*s == *ops[i].op)
+		if (*s == *ops[i].op && strlen(s) == 1)
 		{
 			return (ops[i].f);
 		}
