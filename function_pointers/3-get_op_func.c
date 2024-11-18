@@ -21,6 +21,9 @@ int (*get_op_func(char *s))(int, int)
 	};
 	int i = 0;
 
+	if (s == NULL)
+		return (NULL);
+
 	while (ops[i].f != NULL)
 	{
 		if (*s == *ops[i].op)
@@ -31,5 +34,4 @@ int (*get_op_func(char *s))(int, int)
 	}
 	printf("Error\n");
 	exit(99);
-	return (NULL);
 }
