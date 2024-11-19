@@ -5,7 +5,6 @@
  * print_numbers - print given numbers
  * @separator: string between numbers
  * @n: number of variadic parameters
- * @...: variadic parameters
  *
  * Return: no return
  */
