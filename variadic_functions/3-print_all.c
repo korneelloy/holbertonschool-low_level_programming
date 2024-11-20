@@ -22,9 +22,10 @@ void print_all(const char * const format, ...)
 		{"s", printString}
 	};
 	char l;
+	char *separateur = "";
 
 	va_start(ap, format);
-	while (format[i] != '\0' && format != NULL)
+	while (format[i] != '\0')
 	{
 		l = format[i];
 		if (l == 'c' || l == 'i' ||	l == 'f' || l == 's')
@@ -36,14 +37,15 @@ void print_all(const char * const format, ...)
 					function = choises[j].print;
 				j++;
 			}
+			printf("%s", separateur);
 			function(ap);
+			separateur = ", ";
 		}
 		i++;
 	}
-	printf("\b \b");
-	printf("\b \b");
 	printf("\n");
 	va_end(ap);
+
 }
 
 /**
@@ -55,7 +57,7 @@ void print_all(const char * const format, ...)
 
 void printChar(va_list ap)
 {
-	printf("%c, ", va_arg(ap, int));
+	printf("%c", va_arg(ap, int));
 }
 
 /**
@@ -67,7 +69,7 @@ void printChar(va_list ap)
 
 void printInt(va_list ap)
 {
-	printf("%d, ", va_arg(ap, int));
+	printf("%d", va_arg(ap, int));
 }
 
 /**
@@ -79,7 +81,7 @@ void printInt(va_list ap)
 
 void printFloat(va_list ap)
 {
-	printf("%f, ", va_arg(ap, double));
+	printf("%f", va_arg(ap, double));
 }
 
 /**
@@ -95,5 +97,5 @@ void printString(va_list ap)
 
 	if (string == NULL)
 		string = "(nil)";
-	printf("%s, ", string);
+	printf("%s", string);
 }
