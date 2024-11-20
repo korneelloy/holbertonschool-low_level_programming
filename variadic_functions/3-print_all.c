@@ -24,7 +24,7 @@ void print_all(const char * const format, ...)
 	char l;
 
 	va_start(ap, format);
-	while (format[i] != '\0')
+	while (format[i] != '\0' && format != NULL)
 	{
 		l = format[i];
 		if (l == 'c' || l == 'i' ||	l == 'f' || l == 's')
@@ -43,6 +43,7 @@ void print_all(const char * const format, ...)
 	printf("\b \b");
 	printf("\b \b");
 	printf("\n");
+	va_end(ap);
 }
 
 /**

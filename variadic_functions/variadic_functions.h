@@ -3,14 +3,14 @@
 #include <stdarg.h>
 
 
-int sum_them_all(const unsigned int n, ...);
-void print_numbers(const char *separator, const unsigned int n, ...);
-void print_strings(const char *separator, const unsigned int n, ...);
-void print_all(const char * const format, ...);
-void printChar(va_list ap);
-void printInt(va_list ap);
-void printFloat(va_list ap);
-void printString(va_list ap);
+int sum_them_all(const unsigned int, ...);
+void print_numbers(const char *, const unsigned int, ...);
+void print_strings(const char *, const unsigned int, ...);
+void print_all(const char * const, ...);
+void printChar(va_list);
+void printInt(va_list);
+void printFloat(va_list);
+void printString(va_list);
 
 
 /**
