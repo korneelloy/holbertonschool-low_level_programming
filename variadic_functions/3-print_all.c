@@ -21,31 +21,27 @@ void print_all(const char * const format, ...)
 		{"f", printFloat},
 		{"s", printString}
 	};
-	char l;
 	char *separateur = "";
 
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
-		l = format[i];
-		if (l == 'c' || l == 'i' ||	l == 'f' || l == 's')
+		j = 0;
+		while (j < 4)
 		{
-			j = 0;
-			while (j < 4)
+			if (*choises[j].lettre == format[i])
 			{
-				if (*choises[j].lettre == format[i])
-					function = choises[j].print;
-				j++;
+				function = choises[j].print;
+				printf("%s", separateur);
+				function(ap);
+				separateur = ", ";
 			}
-			printf("%s", separateur);
-			function(ap);
-			separateur = ", ";
+			j++;
 		}
 		i++;
 	}
-	printf("\n");
 	va_end(ap);
-
+	printf("\n");
 }
 
 /**
