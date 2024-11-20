@@ -21,12 +21,13 @@ void print_all(const char * const format, ...)
 		{"f", printFloat},
 		{"s", printString}
 	};
+	char l;
 
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
-		if (format[i] == 'c' || format[i] == 'i' ||
-		format[i] == 'f' || format[i] == 's')
+		l = format[i];
+		if (l == 'c' || l == 'i' ||	l == 'f' || l == 's')
 		{
 			j = 0;
 			while (j < 4)
