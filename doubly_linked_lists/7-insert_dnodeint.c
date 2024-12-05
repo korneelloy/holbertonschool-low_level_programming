@@ -1,6 +1,5 @@
 #include "lists.h"
 
-
 /**
  * insert_dnodeint_at_index - insert a number in a list
  * @h: double pointer to list
@@ -17,7 +16,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	/**  if list empty, add, but only if index given is 0 */
 	if (*h == NULL)
 	{
-		return (add_dnodeint(h, n));
+		if (idx == 0)
+			return (add_dnodeint(h, n));
+		else
+			return (NULL);
 	}
 
 	for (current = *h; current != NULL; current = current->next)
@@ -26,13 +28,13 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 			break;
 		i++;
 	}
-
+	/** if index 0, call add at beginning*/
 	if (i == 0)
 		return (add_dnodeint(h, n));
-
+	/** if index at last node, call add at end*/
 	else if (current->next == NULL)
 		return (add_dnodeint_end(h, n));
-
+	/** else add in middle if index is not greater than lenght list */
 	else if (i < idx)
 		return (NULL);
 
