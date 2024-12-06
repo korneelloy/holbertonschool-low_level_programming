@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * read_textfile - reads textfile and prints it to std out
  * @filename: ptr to filename
