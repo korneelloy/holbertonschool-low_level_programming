@@ -2,7 +2,7 @@
 #include <string.h>
 
 /**
- * opening_file_error: handling errors (messages + exit codes) of program
+ * opening_file_error - handling errors (messages + exit codes) of program
  * @file: the pointer to the file we are dealin with
  * @error_code: error code
  * @buffer: buffer to be freed if something went wrong
@@ -13,6 +13,12 @@
 
 void opening_file_error(char *file, int error_code, char *buffer, int fd)
 {
+	if (buffer != NULL)
+		free(buffer);
+
+	if (fd)
+		close(fd);
+
 	if (error_code == 97)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
@@ -22,25 +28,18 @@ void opening_file_error(char *file, int error_code, char *buffer, int fd)
 	else if (error_code == 98)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
-		if (buffer != NULL)
-			free(buffer);
 		exit(98);
 	}
 	else if (error_code == 99)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
-		if (buffer != NULL)
-			free(buffer);
 		exit(99);
 	}
 	else if (error_code == 100)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		if (buffer != NULL)
-			free(buffer);
 		exit(100);
 	}
-
 }
 
 /**
@@ -82,6 +81,16 @@ void cp(char *file_from, char *file_to)
 	size_written = write(file_t, buffer, size_read);
 		if (size_written == -1 || size_written != size_read)
 			opening_file_error(file_to, 99, buffer, file_t);
+
+	/**
+	 * for (i = 0; size-written == 1024; i++)
+	 * {
+	 * 		i++;
+	 * 		size-written = append(file_f, file_t, i);
+	 * }
+	 * s
+	 */
+
 
 	closed_f = close(file_f);
 		if (closed_f == -1)
