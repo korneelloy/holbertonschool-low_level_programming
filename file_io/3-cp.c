@@ -44,19 +44,22 @@ void opening_file_error(char *file, int error_code, char *buffer, int fd)
 
 /**
  * append - appending next 1024 bytes (if text to be copied not finished)
- * @file_f: fd of origine file
- * @i: number of itterations of 1024 bytes
  * @file_from: origine file of of the text
  * @file_to: destination file for text
+ * @i: number of itterations of 1024 bytes
  *
  * Return: number of bytes writte,
  */
 
-int append(int file_f, int i, char *file_from, char *file_to)
+int append(char *file_from, char *file_to, int i)
 {
 	char *next_buffer = NULL;
 	int size_read = 0, size_written = 0;
-	int file_t = 0, closed_t = 0;
+	int file_f = 0, file_t = 0, closed_t = 0, closed_f = 0;
+
+	file_f = open(file_from, O_RDONLY);
+		if (file_f == -1)
+			opening_file_error(file_from, 98, next_buffer, file_f);
 
 	next_buffer = malloc(1024);
 		if (next_buffer == NULL)
@@ -79,6 +82,10 @@ int append(int file_f, int i, char *file_from, char *file_to)
 	closed_t = close(file_t);
 		if (closed_t == -1)
 			opening_file_error(file_to, 100, next_buffer, file_t);
+
+	closed_f = close(file_f);
+		if (closed_f == -1)
+			opening_file_error(file_from, 100, next_buffer, file_f);
 
 	return (size_written);
 }
@@ -115,20 +122,17 @@ void cp(char *file_from, char *file_to)
 	size_written = write(file_t, buffer, size_read);
 		if (size_written == -1 || size_written != size_read)
 			opening_file_error(file_to, 99, buffer, file_t);
-	for (i = 0; size_written == 1024; i++)
-	{
-		closed_t = close(file_t);
-		if (closed_t == -1)
-			opening_file_error(file_to, 100, buffer, file_t);
-		i++;
-		size_written = append(file_f, i, file_from, file_to);
-	}
-	closed_f = close(file_f);
-		if (closed_f == -1)
-			opening_file_error(file_from, 100, buffer, file_f);
 	closed_t = close(file_t);
 		if (closed_t == -1)
 			opening_file_error(file_to, 100, buffer, file_t);
+	closed_f = close(file_f);
+		if (closed_f == -1)
+			opening_file_error(file_from, 100, buffer, file_f);
+	for (i = 0; size_written == 1024; i++)
+	{
+		i++;
+		size_written = append(file_from, file_to, i);
+	}
 }
 
 /**
