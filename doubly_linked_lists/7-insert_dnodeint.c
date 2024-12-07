@@ -4,7 +4,7 @@
  * insert_dnodeint_at_index - insert a number in a list
  * @h: double pointer to list
  * @idx: index where to add
- * @n: nimber to be addes
+ * @n: number to be addes
  *
  * Return: pointer to new node or NULL if faile
  */
@@ -35,14 +35,14 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	else if (current->next == NULL)
 		return (add_dnodeint_end(h, n));
 	/** else add in middle if index is not greater than lenght list */
-	else if (i < idx)
+	else if (i > idx)
 		return (NULL);
 
 	new_node = malloc(sizeof(dlistint_t));
 	if (new_node == NULL)
 		return (NULL);
 
-	new_node->n = n;
+
 	new_node->next = current;
 	new_node->prev = current->prev;
 
