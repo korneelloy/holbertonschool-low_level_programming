@@ -3,7 +3,7 @@
 
 /**
  * opening_file_error - handling errors (messages + exit codes) of program
- * @file: the pointer to the file we are dealin with
+ * @file: the pointer to the file we are dealing with
  * @error_code: error code
  * @buffer: buffer to be freed if something went wrong
  * @fd: file descriptor
@@ -24,7 +24,6 @@ void opening_file_error(char *file, int error_code, char *buffer, int fd)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
 	else if (error_code == 98)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
@@ -42,6 +41,48 @@ void opening_file_error(char *file, int error_code, char *buffer, int fd)
 	}
 }
 
+
+/**
+ * append - appending next 1024 bytes (if text to be copied not finished)
+ * @file_f: fd of origine file
+ * @i: number of itterations of 1024 bytes
+ * @file_from: origine file of of the text
+ * @file_to: destination file for text
+ *
+ * Return: number of bytes writte,
+ */
+
+int append(int file_f, int i, char *file_from, char *file_to)
+{
+	char *next_buffer = NULL;
+	int size_read = 0, size_written = 0;
+	int file_t = 0, closed_t = 0;
+
+	next_buffer = malloc(1024);
+		if (next_buffer == NULL)
+			opening_file_error(file_from, 98, next_buffer, file_f);
+
+	lseek(file_f, (i * 1024), SEEK_SET);
+
+	size_read = read(file_f, next_buffer, 1024);
+		if (size_read == -1)
+			opening_file_error(file_from, 98, next_buffer, file_f);
+
+	file_t = open(file_to, O_WRONLY | O_APPEND);
+		if (file_t == -1)
+			opening_file_error(file_to, 99, next_buffer, file_t);
+
+	size_written = write(file_t, next_buffer, size_read);
+		if (size_written == -1 || size_written != size_read)
+			opening_file_error(file_to, 99, next_buffer, file_t);
+
+	closed_t = close(file_t);
+		if (closed_t == -1)
+			opening_file_error(file_to, 100, next_buffer, file_t);
+
+	return (size_written);
+}
+
 /**
  * cp - copy a text from one file to another (truncating)
  * @file_from: origine file of of the text
@@ -50,56 +91,44 @@ void opening_file_error(char *file, int error_code, char *buffer, int fd)
  * Return: no return
  */
 
-
 void cp(char *file_from, char *file_to)
 {
 	char *buffer = NULL;
-	int file_f = 0, file_t = 0;
+	int file_f = 0, file_t = 0, i = 0;
 	int size_read = 0, size_written = 0, closed_f = 0, closed_t = 0;
 
 	if (file_from == NULL)
 		opening_file_error(file_from, 98, buffer, file_f);
-
 	file_f = open(file_from, O_RDONLY);
 		if (file_f == -1)
 			opening_file_error(file_from, 98, buffer, file_f);
-
 	buffer = malloc(1024);
 		if (buffer == NULL)
 			opening_file_error(file_from, 98, buffer, file_f);
-
 	size_read = read(file_f, buffer, 1024);
 		if (size_read == -1)
 			opening_file_error(file_from, 98, buffer, file_f);
-
-
 	file_t = open(file_to, O_WRONLY | O_CREAT | O_TRUNC,
 	S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 		if (file_t == -1)
 			opening_file_error(file_to, 99, buffer, file_t);
-
 	size_written = write(file_t, buffer, size_read);
 		if (size_written == -1 || size_written != size_read)
 			opening_file_error(file_to, 99, buffer, file_t);
-
-	/**
-	 * for (i = 0; size-written == 1024; i++)
-	 * {
-	 * 		i++;
-	 * 		size-written = append(file_f, file_t, i);
-	 * }
-	 * s
-	 */
-
-
+	for (i = 0; size_written == 1024; i++)
+	{
+		closed_t = close(file_t);
+		if (closed_t == -1)
+			opening_file_error(file_to, 100, buffer, file_t);
+		i++;
+		size_written = append(file_f, i, file_from, file_to);
+	}
 	closed_f = close(file_f);
 		if (closed_f == -1)
 			opening_file_error(file_from, 100, buffer, file_f);
-
 	closed_t = close(file_t);
 		if (closed_t == -1)
 			opening_file_error(file_to, 100, buffer, file_t);
-
 }
 
 /**
