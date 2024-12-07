@@ -128,11 +128,8 @@ void cp(char *file_from, char *file_to)
 	closed_f = close(file_f);
 		if (closed_f == -1)
 			opening_file_error(file_from, 100, buffer, file_f);
-	for (i = 0; size_written == 1024; i++)
-	{
-		i++;
+	for (i = 1; size_written == 1024; i++)
 		size_written = append(file_from, file_to, i);
-	}
 }
 
 /**
