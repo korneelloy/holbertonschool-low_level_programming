@@ -31,17 +31,16 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	/** if index 0, call add at beginning*/
 	if (i == 0)
 		return (add_dnodeint(h, n));
-	/** if index at last node, call add at end*/
-	else if (current->next == NULL)
+	/** if index at last node, call add at end */
+	else if (current && current->next == NULL)
 		return (add_dnodeint_end(h, n));
 	/** else add in middle if index is not greater than lenght list */
-	else if (i > idx)
+	else if (i < idx)
 		return (NULL);
 
 	new_node = malloc(sizeof(dlistint_t));
 	if (new_node == NULL)
 		return (NULL);
-
 
 	new_node->next = current;
 	new_node->prev = current->prev;
